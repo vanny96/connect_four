@@ -19,7 +19,17 @@ class ConnectFour
     end
     grid
   end
+  public
+  def display_grid
+    print "\n"
+    7.times {print "__"}
+    print "\n"
+    grid.each do |row|
+      puts row.join("|")
+    end
+    14.times {print "\u203E".encode('utf-8')}
+  end
 end
 
 cacca = ConnectFour.new
-print cacca.grid
+cacca.display_grid
