@@ -8,6 +8,12 @@ describe ConnectFour do
       game.put_piece 1, "O"
       expect(game.grid[0][0]).to eql("O")  
     end
+    it "stacks pieces on top of other pieces" do
+      game.put_piece 2, "X"
+      game.put_piece 2, "X"
+      expect(game.grid[1][1]).to eql("X")  
+    end
+    
   end
 
   describe "#initialize" do

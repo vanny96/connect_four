@@ -6,7 +6,15 @@ class ConnectFour
     
   end
   def put_piece column, piece
-    @grid[0][column-1] = piece
+    row = 0
+    while row < @grid.length
+      if @grid[row][column-1] == " "
+        @grid[row][column-1] = piece 
+        break
+      else
+        row += 1
+      end
+    end      
   end
   private
   def create_grid
