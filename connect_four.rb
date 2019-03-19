@@ -8,8 +8,24 @@ class ConnectFour
   def new_game
     puts "Welcome to a Connect four game!"
     get_player_names
-    
-    
+    loop do
+      display_grid
+      puts "#{@player1}, where do you want to put your piece?"
+      put_piece gets.chomp.to_i, "O"
+      display_grid
+      if check_victory 
+        puts "#{@player1} wins!! #{@player2} keep practicing!"
+        return
+      end
+      break if check_full
+      puts "#{@player2}, where do you want to put your piece?"
+      put_piece gets.chomp.to_i, "X"
+      if check_victory 
+        puts "#{@player2} wins!! #{@player1} keep practicing!"
+        return
+      end
+      break if check_full
+    end
   end
 
   def put_piece column, piece
@@ -59,7 +75,7 @@ class ConnectFour
     7.times {print "__"}
     print "\n"
 
-    grid.each do |row|
+    grid.reverse.each do |row|
       puts "|#{row.join("|")}|"
     end
 
@@ -78,6 +94,7 @@ class ConnectFour
     @grid.each do |row|
       return false if row.include? " "
     end
+    return true
   end
 
   def check_cell row, column
@@ -139,4 +156,4 @@ end
   
 
 game = ConnectFour.new
-
+game.new_game
