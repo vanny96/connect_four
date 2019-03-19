@@ -5,7 +5,8 @@ class ConnectFour
     @grid =  create_grid
     
   end
-  def put_piece column
+  def put_piece column, piece
+    @grid[0][column-1] = piece
   end
   private
   def create_grid
@@ -25,11 +26,13 @@ class ConnectFour
     7.times {print "__"}
     print "\n"
     grid.each do |row|
-      puts row.join("|")
+      puts "|#{row.join("|")}|"
     end
     14.times {print "\u203E".encode('utf-8')}
+    print "\n 1 2 3 4 5 6 7\n"
   end
 end
 
 cacca = ConnectFour.new
+cacca.display_grid
 
