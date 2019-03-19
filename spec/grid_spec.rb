@@ -102,8 +102,76 @@ describe ConnectFour do
       game.put_piece 3, "O"
       expect(game.check_victory).to eql(false)
     end
-  end
-  
-  
+
+    #checks diagonally-right
+    it "Returns true if four pieces are aligned diagonally" do
+      game = ConnectFour.new
+      game.put_piece 2, "O"
+      game.put_piece 3, "X"
+      game.put_piece 3, "O"
+      game.put_piece 4, "X"
+      game.put_piece 4, "X"
+      game.put_piece 4, "O"
+      game.put_piece 5, "X"
+      game.put_piece 5, "X"
+      game.put_piece 5, "X"
+      game.put_piece 5, "O"
+      expect(game.check_victory).to eql(true) 
+    end
+
+    it "Returns false if three pieces are aligned diagonally" do
+      game = ConnectFour.new
+      game.put_piece 2, "O"
+      game.put_piece 3, "X"
+      game.put_piece 3, "O"
+      game.put_piece 4, "X"
+      game.put_piece 4, "X"
+      game.put_piece 4, "O"
+      game.put_piece 5, "X"
+      game.put_piece 5, "X"
+      game.put_piece 5, "X"
+      expect(game.check_victory).to eql(false) 
+    end
+    it "Returns false if four different pieces are aligned diagonally" do
+      game = ConnectFour.new
+      game.put_piece 2, "O"
+      game.put_piece 3, "X"
+      game.put_piece 3, "O"
+      game.put_piece 4, "X"
+      game.put_piece 4, "X"
+      game.put_piece 4, "O"
+      game.put_piece 5, "X"
+      game.put_piece 5, "X"
+      game.put_piece 5, "O"
+      game.put_piece 5, "X"
+      expect(game.check_victory).to eql(false) 
+    end
+    it "Doesn't broke near the edges" do
+      game = ConnectFour.new
+      game.put_piece 4, "O"
+      game.put_piece 5, "X"
+      game.put_piece 5, "O"
+      game.put_piece 6, "X"
+      game.put_piece 6, "X"
+      game.put_piece 6, "O"
+      expect(game.check_victory).to eql(false)
+    end
+
+    #checks diagonally-left
+    it "Returns true if four pieces are aligned diagonally" do
+      game = ConnectFour.new
+      game.put_piece 5, "O"
+      game.put_piece 4, "X"
+      game.put_piece 4, "O"
+      game.put_piece 3, "X"
+      game.put_piece 3, "X"
+      game.put_piece 3, "O"
+      game.put_piece 2, "X"
+      game.put_piece 2, "X"
+      game.put_piece 2, "X"
+      game.put_piece 2, "O"
+      expect(game.check_victory).to eql(true) 
+    end
+  end  
 end
 

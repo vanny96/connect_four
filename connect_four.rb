@@ -84,6 +84,19 @@ class ConnectFour
       break if piece_coordinates[0] == (grid.length) -1
       piece_coordinates[0] += 1 if piece_coordinates[0] < grid.length
     end
+    counter = 0
+    piece_coordinates = [row, column]
+
+    while grid[piece_coordinates[0]][piece_coordinates[1]] == reference
+      counter += 1
+      return true if counter == 4
+      
+      break if piece_coordinates[0] == (grid.length) -1
+      if piece_coordinates[0] < grid.length && piece_coordinates[1] < grid[0].length
+        piece_coordinates[0] += 1 
+        piece_coordinates[1] += 1
+      end
+    end
     return false
   end
   
