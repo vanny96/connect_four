@@ -10,11 +10,12 @@ class ConnectFour
     while row < @grid.length
       if @grid[row][column-1] == " "
         @grid[row][column-1] = piece 
-        break
+        return
       else
         row += 1
       end
-    end      
+    end   
+    return "error"   
   end
   private
   def create_grid
@@ -42,5 +43,5 @@ class ConnectFour
 end
 
 cacca = ConnectFour.new
-cacca.display_grid
+
 

@@ -13,7 +13,10 @@ describe ConnectFour do
       game.put_piece 2, "X"
       expect(game.grid[1][1]).to eql("X")  
     end
-    
+    it "doesn't allow pieces above the top" do
+      6.times{game.put_piece 4, "O"}
+      expect(game.put_piece 4, "O").to eql("error") 
+    end
   end
 
   describe "#initialize" do
@@ -26,3 +29,4 @@ describe ConnectFour do
   end
   
 end
+
