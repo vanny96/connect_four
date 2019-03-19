@@ -32,4 +32,4 @@ class ConnectFour
 end
 
 cacca = ConnectFour.new
-cacca.display_grid
+
