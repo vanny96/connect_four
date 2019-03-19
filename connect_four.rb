@@ -26,7 +26,10 @@ class ConnectFour
       end
       break if check_full
     end
+<<<<<<< HEAD
     puts "INCREDIBLE TIE!"
+=======
+>>>>>>> acb3cad67912b88d609573decce7975d74a33380
   end
 
   def put_piece column, piece
