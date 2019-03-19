@@ -64,12 +64,25 @@ class ConnectFour
     reference = grid[row][column]
     counter = 0
     piece_coordinates = [row, column]
+
     #check horizontally
     while grid[piece_coordinates[0]][piece_coordinates[1]] == reference
       counter += 1
       return true if counter == 4
-      piece_coordinates[1] += 1 if piece_coordinates[1] < grid[0].length
+
       break if piece_coordinates[1] == (grid[0].length) -1
+      piece_coordinates[1] += 1 if piece_coordinates[1] < grid[0].length
+    end
+    counter = 0
+    piece_coordinates = [row, column]
+
+    #check vertically
+    while grid[piece_coordinates[0]][piece_coordinates[1]] == reference
+      counter += 1
+      return true if counter == 4
+      
+      break if piece_coordinates[0] == (grid.length) -1
+      piece_coordinates[0] += 1 if piece_coordinates[0] < grid.length
     end
     return false
   end
@@ -78,4 +91,10 @@ end
   
 
 game = ConnectFour.new
-
+game.put_piece 3, "O"
+      game.put_piece 3, "O"
+      game.put_piece 3, "X"
+      game.put_piece 3, "O"
+      game.put_piece 3, "O"
+      game.put_piece 3, "O"
+      game.check_victory

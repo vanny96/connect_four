@@ -31,7 +31,8 @@ describe ConnectFour do
 
   describe "#check_victory" do
     
-    it "returns true if 4 pieces are aligne horizontally" do
+    #Checks horizontally
+    it "returns true if 4 pieces are aligned horizontally" do
       game = ConnectFour.new
       game.put_piece 1, "O"
       game.put_piece 2, "O"
@@ -39,7 +40,7 @@ describe ConnectFour do
       game.put_piece 4, "O"
       expect(game.check_victory).to eql(true)  
     end    
-    it "returns false if 3 pieces are aligne horizontally" do
+    it "returns false if 3 pieces are aligned horizontally" do
       game = ConnectFour.new
       game.put_piece 1, "O"
       game.put_piece 2, "O"
@@ -54,7 +55,7 @@ describe ConnectFour do
       game.put_piece 4, "O"
       expect(game.check_victory).to eql(false)  
     end 
-    it "returns true if 4 pieces are aligne horizontally on rows higher than 1" do
+    it "returns true if 4 pieces are aligned horizontally on rows higher than 1" do
       game = ConnectFour.new
       game.put_piece 1, "O"
       game.put_piece 2, "X"
@@ -66,7 +67,41 @@ describe ConnectFour do
       game.put_piece 4, "O"
       expect(game.check_victory).to eql(true)  
     end 
-    
+
+    #checks vertically
+    it "returns true if 4 pieces are aligned vertically" do
+      game = ConnectFour.new
+      game.put_piece 1, "O"
+      game.put_piece 1, "O"
+      game.put_piece 1, "O"
+      game.put_piece 1, "O"
+      expect(game.check_victory).to eql(true)  
+    end 
+    it "returns false if 3 pieces are aligned vertically" do
+      game = ConnectFour.new
+      game.put_piece 2, "X"
+      game.put_piece 2, "X"
+      game.put_piece 2, "X"
+      expect(game.check_victory).to eql(false)  
+    end 
+    it "returns false if 4 different pieces are aligned vertically" do
+      game = ConnectFour.new
+      game.put_piece 1, "O"
+      game.put_piece 1, "O"
+      game.put_piece 1, "X"
+      game.put_piece 1, "O"
+      expect(game.check_victory).to eql(false)  
+    end 
+    it "doesn't break on grid limit" do
+      game = ConnectFour.new
+      game.put_piece 3, "O"
+      game.put_piece 3, "O"
+      game.put_piece 3, "X"
+      game.put_piece 3, "O"
+      game.put_piece 3, "O"
+      game.put_piece 3, "O"
+      expect(game.check_victory).to eql(false)
+    end
   end
   
   
