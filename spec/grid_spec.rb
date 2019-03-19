@@ -172,6 +172,16 @@ describe ConnectFour do
       game.put_piece 2, "O"
       expect(game.check_victory).to eql(true) 
     end
+    it "Doesn't broke near the edges" do
+      game = ConnectFour.new
+      game.put_piece 2, "O"
+      game.put_piece 1, "X"
+      game.put_piece 1, "O"
+      game.put_piece 0, "X"
+      game.put_piece 0, "X"
+      game.put_piece 0, "O"
+      expect(game.check_victory).to eql(false)
+    end
   end  
 end
 

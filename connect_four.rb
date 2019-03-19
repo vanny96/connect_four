@@ -1,8 +1,15 @@
 class ConnectFour
-  attr_accessor :grid
+  attr_accessor :grid, :player1,  :player2
 
   def initialize
     @grid =  create_grid
+  end
+
+  def new_game
+    puts "Welcome to a Connect four game!"
+    get_player_names
+    
+    
   end
 
   def put_piece column, piece
@@ -60,6 +67,19 @@ class ConnectFour
     print "\n 1 2 3 4 5 6 7\n"
   end
 
+  def get_player_names
+    puts "Player 1, enter your name!"
+    @player1 = gets.chomp
+    puts "Now yours, player 2!"
+    @player2 = gets.chomp
+  end
+
+  def check_full
+    @grid.each do |row|
+      return false if row.include? " "
+    end
+  end
+
   def check_cell row, column
     reference = grid[row][column]
     counter = 0
@@ -87,14 +107,29 @@ class ConnectFour
     counter = 0
     piece_coordinates = [row, column]
 
+    #check diagonally right
     while grid[piece_coordinates[0]][piece_coordinates[1]] == reference
       counter += 1
       return true if counter == 4
       
-      break if piece_coordinates[0] == (grid.length) -1
+      break if piece_coordinates[0] == (grid.length) -1 || piece_coordinates[1] == grid[0].length
       if piece_coordinates[0] < grid.length && piece_coordinates[1] < grid[0].length
         piece_coordinates[0] += 1 
         piece_coordinates[1] += 1
+      end
+    end
+    counter = 0
+    piece_coordinates = [row, column]
+
+    #check diagonally left
+    while grid[piece_coordinates[0]][piece_coordinates[1]] == reference
+      counter += 1
+      return true if counter == 4
+      
+      break if piece_coordinates[0] == (grid.length) -1 || piece_coordinates[1] == 0
+      if piece_coordinates[0] < grid.length && piece_coordinates[1] >= 0
+        piece_coordinates[0] += 1 
+        piece_coordinates[1] -= 1
       end
     end
     return false
@@ -104,10 +139,4 @@ end
   
 
 game = ConnectFour.new
-game.put_piece 3, "O"
-      game.put_piece 3, "O"
-      game.put_piece 3, "X"
-      game.put_piece 3, "O"
-      game.put_piece 3, "O"
-      game.put_piece 3, "O"
-      game.check_victory
+
